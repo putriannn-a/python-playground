@@ -221,13 +221,13 @@ def tarik_gacha(player):
     player["poin"] -= HARGA_GACHA
 
     roll = random.randint(1, 100)
-    if roll <= 50:
+    if roll <= 25:
         rarity = "common"
     elif roll <= 75:
         rarity = "uncommon"
     elif roll <= 90:
         rarity = "rare"
-    elif roll <= 98:
+    elif roll <= 100:
         rarity = "epic"
     else:
         rarity = "legendary"
