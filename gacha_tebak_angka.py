@@ -219,18 +219,26 @@ def tarik_gacha(player):
         return
 
     player["poin"] -= HARGA_GACHA
+    player["total_gacha"] += 1
 
     roll = random.randint(1, 100)
-    if roll <= 25:
-        rarity = "common"
-    elif roll <= 75:
-        rarity = "uncommon"
-    elif roll <= 90:
-        rarity = "rare"
-    elif roll <= 100:
-        rarity = "epic"
+
+    if player["total_gacha"] == 1:
+        rarity = "legendary" if roll <= 40 else "epic"
+    elif player["total_gacha"] == 2:
+        rarity = "epic" if roll <= 50 else "rare"
     else:
-        rarity = "legendary"
+        # Gacha menjadi jauh lebih kikir
+        if roll <= 75:  #
+            rarity = "common"
+        elif roll <= 93:  
+            rarity = "uncommon"
+        elif roll <= 98: 
+            rarity = "rare"
+        elif roll <= 99: 
+            rarity = "epic"
+        else:  
+            rarity = "legendary"
 
     tipe = random.choice(["pet", "armor"])
     hadiah = random.choice(hadiah_gacha[(tipe, rarity)])
